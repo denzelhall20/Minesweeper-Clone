@@ -24,14 +24,14 @@ public class DigitalNumber extends Pane{
 	 * each bar of the DigitalNumber object. 
 	 * 
 	 * The correspondence between the bars of the DigialNumber and the double array is shown below:
-	 * 		   0
-	 * 		_______
-	 *     |	   |
-	 * 6   |	   | 1
+	 *	   0
+	 * 	_______
+	 *     |       |
+	 * 6   |       | 1
 	 *     |   2   |
 	 *      _______
-	 *     |	   |
-	 * 5   |	   | 3
+	 *     |       |
+	 * 5   |       | 3
 	 *     |   4   |
 	 *      _______
 	 * 
