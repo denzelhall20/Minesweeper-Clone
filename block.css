@@ -1,0 +1,12 @@
+.button {
+	-fx-background-color: silver;
+	-fx-border-width: 250%; 
+	-fx-border-radius: 0.1;
+	-fx-border-insets: 1;
+	-fx-border-color: white gray gray white;
+}
+
+.button:pressed {
+	-fx-border-color: gray white white gray;
+	-fx-border-insets: 0;
+}
