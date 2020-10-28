@@ -132,7 +132,8 @@ public class BlockArrayBoard implements BoardModel{
 	
 	
 	@Override
-	public int getValue(int row, int col) throws IllegalStateException {
+	public int getValue(int row, int col) throws IllegalStateException, IllegalArgumentException {
+		BoardModel.checkArgumentsOutOfBounds(row, col, numRows, numCols);		//throws IllegalArgumentException
 		if (!isRevealed(row, col)) {
 			throw new IllegalStateException("Tried to get value from block at (" + row + ", " + col + " when it is has not been revealed yet.");
 		}
@@ -140,7 +141,8 @@ public class BlockArrayBoard implements BoardModel{
 	}
 
 	@Override
-	public void flag(int row, int col) {
+	public void flag(int row, int col) throws IllegalArgumentException {
+		BoardModel.checkArgumentsOutOfBounds(row, col, numRows, numCols);		//throws IllegalArgumentException
 		if (isGameOver() || isFlagged(row, col) || isRevealed(row, col)) {
 			return;
 		}
@@ -150,7 +152,8 @@ public class BlockArrayBoard implements BoardModel{
 	}
 	
 	@Override
-	public void unflag(int row, int col) {
+	public void unflag(int row, int col) throws IllegalArgumentException {
+		BoardModel.checkArgumentsOutOfBounds(row, col, numRows, numCols);		//throws IllegalArgumentException
 		if (!isFlagged(row, col) || isGameOver()){ 
 			return;
 		}
@@ -159,17 +162,20 @@ public class BlockArrayBoard implements BoardModel{
 	}
 
 	@Override
-	public boolean isFlagged(int row, int col) {
+	public boolean isFlagged(int row, int col) throws IllegalArgumentException {
+		BoardModel.checkArgumentsOutOfBounds(row, col, numRows, numCols);		//throws IllegalArgumentException
 		return board[row][col].isFlagged();
 	}
 
 	@Override
-	public boolean isRevealed(int row, int col) {
+	public boolean isRevealed(int row, int col) throws IllegalArgumentException {
+		BoardModel.checkArgumentsOutOfBounds(row, col, numRows, numCols);		//throws IllegalArgumentException
 		return board[row][col].isRevealed();
 	}
 
 	@Override
-	public boolean isBomb(int row, int col) throws IllegalStateException {
+	public boolean isBomb(int row, int col) throws IllegalStateException, IllegalArgumentException {
+		BoardModel.checkArgumentsOutOfBounds(row, col, numRows, numCols);		//throws IllegalArgumentException
 		if (isRevealed(row, col)) {
 			throw new IllegalStateException("Tried to check if block at (" + row + ", " + col + " is a bomb when it is has not been revealed yet.");
 		}
@@ -177,7 +183,8 @@ public class BlockArrayBoard implements BoardModel{
 	}
 
 	@Override
-	public void reveal(int row, int col) {
+	public void reveal(int row, int col) throws IllegalArgumentException {
+		BoardModel.checkArgumentsOutOfBounds(row, col, numRows, numCols);		//throws IllegalArgumentException
 		/* Do not reveal if:
 		 * 1. game is over or
 		 * 2. block at that position has been flagged or
@@ -235,34 +242,13 @@ public class BlockArrayBoard implements BoardModel{
 	private void unFlagBadFlags() {
 		for (int row = 0; row < board.length; row++) {
 			for (int col  = 0; col < board[row].length; col++) {
-				if (!contains(bombLocations, row, col) && board[row][col].isFlagged()) {
+				if (!BoardModel.contains(bombLocations, row, col) && board[row][col].isFlagged()) {
 					//unflag() is safe to use because lost has not been set to true yet.
 					unflag(row, col);
 					notifyObservers(new BlockState(row, col, -2, BoardEvent.BAD_FLAG));
 				}
 			}
 		}
-	}
-	
-	/**
-	 * Checks if a list of Pairs contains a given (row, col) pair.
-	 * @param list a given list of Pairs.
-	 * @param row the row position that is being checked.
-	 * @param col the column position that is being checked.
-	 * @return true if there exists a pair p in list that satisfies (p.equals(row, col)).
-	 */
-	public static boolean contains(List<Pair> list, int row, int col) {
-		if (list == null || list.size() < 2) {
-			return false;
-		}
-		
-		for (Pair pair: list) {
-			if (pair.equals(row, col)) {
-				return true;
-			}
-		}
-		
-		return false;
 	}
 	
 	@Override
