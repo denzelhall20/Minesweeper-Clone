@@ -168,7 +168,7 @@ class BlockArrayBoardTest {
 					() -> assertTrue(board.isRevealed(pair.getRow(), pair.getCol())),
 					() -> {
 						if (board.getValue(pair.getRow(), pair.getCol()) == 0 && !visited.contains(pair)) {
-							checkEmptyReveal(pair.getRow(), pair.getCol(), 10, 10, board);
+							checkEmptyReveal(pair.getRow(), pair.getCol(), numRows, numCols, board);
 						}
 					}
 			);
