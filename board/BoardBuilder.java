@@ -17,8 +17,19 @@ public abstract class BoardBuilder {
 	 * @param numRows the number of rows on the board.
 	 * @param numCols the number of columns on the board.
 	 * @param numBombs the number of bombs on the board.
+	 * @throws IllegalArgumentException if any of the parameters are negative or the number of bombs exceeds the number of blocks.
 	 */
-	protected BoardBuilder(int numRows, int numCols, int numBombs) {
+	protected BoardBuilder(int numRows, int numCols, int numBombs) throws IllegalArgumentException {
+		if (numRows <= 0 || numCols <= 0 || numBombs <= 0) {
+			throw new IllegalArgumentException("Parameters must be greater than zero. Entered numRows: " + numRows +
+												"numCols: " + numCols +  " numBombs: " + numBombs + ".");
+		}
+		
+		if (numBombs > numRows * numCols) {
+			throw new IllegalArgumentException("The number of bombs cannot exceed the number of total blocks. Entered numRows: " +
+												numRows + " numCols: " + numCols + " total blocks: " + (numRows * numCols) +
+												" numBombs: " + numBombs + ".");			
+		}
 		this.numRows = numRows;
 		this.numCols = numCols;
 		this.numBombs = numBombs;

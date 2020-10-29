@@ -18,7 +18,7 @@ public class BlockArrayBoard implements BoardModel{
 	private int numCols;
 	private boolean lost;
 	private int numUnRevealedBlocks;
-	private String state;							//Stores the values of the block for debugging purposes.
+	private String state;							//Stores the values of the blocks for debugging purposes.
 	
 	public static class Builder extends BoardBuilder{
 		
@@ -27,8 +27,9 @@ public class BlockArrayBoard implements BoardModel{
 		 * @param numRows the number of rows on the board.
 		 * @param numCols the number of columns on the board.
 		 * @param numBombs the number of bombs on the board.
+		 * @throws IllegalArgumentException if any of the parameters are negative of the number of bombs exceeds the number of blocks.
 		 */
-		public Builder(int numRows, int numCols, int numBombs) {
+		public Builder(int numRows, int numCols, int numBombs) throws IllegalArgumentException {
 			super(numRows, numCols, numBombs);
 		}
 		
@@ -114,9 +115,9 @@ public class BlockArrayBoard implements BoardModel{
 		for (Pair pair: BoardModel.getNeighbors(row, col, numRows, numCols)) {
 			potentialBombPos.remove(pair);
 		}
+		
 		for (int bombsPlaced = 0; bombsPlaced < numBombs; bombsPlaced++) {
 			Pair bombPos = potentialBombPos.get(rand.nextInt(potentialBombPos.size()));
-			
 			board[bombPos.getRow()][bombPos.getCol()] = -1;
 			
 			//this takes care of #1
@@ -148,7 +149,6 @@ public class BlockArrayBoard implements BoardModel{
 		}
 		board[row][col].flag();
 		notifyObservers(new BlockState(row, col, -3, BoardEvent.FLAG));
-		
 	}
 	
 	@Override
