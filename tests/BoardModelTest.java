@@ -160,6 +160,13 @@ class BoardModelTest {
 	}
 	
 	@Test
+	void getNeighborsNegativePositionTest() {
+		assertIterableEquals(BoardModel.getNeighbors(-1, 5, 10, 10), Arrays.asList(new Pair(0, 4),
+																				   new Pair(0, 5),
+																				   new Pair(0, 6)));
+	}
+	
+	@Test
 	void containsNullTest() {
 		assertFalse(BoardModel.contains(null, 2, 2));
 	}
