@@ -44,6 +44,15 @@ public class BlockState {
 		return value;
 	}
 	
+	public boolean equals(Object o) {
+		if (o instanceof BlockState) {
+			BlockState b = (BlockState) o;
+			return pair.getRow() == b.getRow() && pair.getCol() == b.getCol() && value == b.getValue() && state == b.getState();
+		}
+		
+		return false;
+	}
+	
 	@Override
 	public String toString() {
 		return pair.toString() + " value:" + value + " state: " + state.toString();
