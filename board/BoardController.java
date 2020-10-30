@@ -98,9 +98,11 @@ public class BoardController implements BoardSubject {
 	public void unFlag(int row, int col) {
 		//If the game is not started yet then remove the flag from the queue if it exists and notify all observers.
 		if (!isGameStarted()) {
-			//remove() will retrun null if it doesn't contain a flag with the given position.
-			flagQueue.remove(new Pair(row, col));
-			notifyObservers(new BlockState(row, col, -2, BoardEvent.UNFLAG));
+			Pair pair = new Pair(row, col);
+			if (flagQueue.contains(pair)) {
+				flagQueue.remove(pair);
+				notifyObservers(new BlockState(row, col, -2, BoardEvent.UNFLAG));
+			}
 		} else {
 			model.unflag(row, col);
 		}
