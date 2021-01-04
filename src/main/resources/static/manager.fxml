@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121"
+	  xmlns:fx="http://javafx.com/fxml/1" fx:controller="ms.ui.manager.ManagerController"
+	  fx:id="manager" stylesheets="@manager.css">
+	  <left>
+	  	<HBox fx:id="bombCountBox" alignment="center"></HBox>
+	  </left>
+	  
+	  <right>
+	  	<HBox fx:id="timerBox" alignment="center"></HBox>
+	  </right>
+	  
+	  <center>
+	  	<Button fx:id="resetButton" onAction="#handleReset" alignment="center"></Button>
+	  </center>  
+</BorderPane>

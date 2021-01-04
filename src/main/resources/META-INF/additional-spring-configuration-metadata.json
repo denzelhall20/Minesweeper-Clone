@@ -1,0 +1,13 @@
+{"properties": [
+  {
+    "name": "spring.application.ui.title",
+    "type": "java.lang.String",
+    "description": "The title of the application displayed on the UI."
+  },
+  {
+    "name": "spring.application.ui.blockSize",
+    "type": "java.lang.Double",
+    "description": "The width and height of the block."
+  }
+ ]
+ }

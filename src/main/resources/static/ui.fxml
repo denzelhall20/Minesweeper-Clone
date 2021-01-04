@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.MenuBar?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.121"
+	  xmlns:fx="http://javafx.com/fxml/1" fx:id="ui"
+	  stylesheets="@ui.css" fx:controller="ms.ui.UIController">
+	<fx:include fx:id="menu" source="menu.fxml" styleClass="menu"/>
+   	<fx:include source="manager.fxml" styleClass="children"/> 
+	<fx:include fx:id="board" source = "board.fxml" styleClass="children"/>	  
+</VBox>

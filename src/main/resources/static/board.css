@@ -1,0 +1,46 @@
+GridPane {
+	-fx-vgap: -1;
+	-fx-hgap: -1;
+}
+
+.button {
+	-fx-background-color: silver;
+	-fx-border-width: 250%; 
+	-fx-border-radius: 0.1;
+	-fx-border-insets: 1;
+	-fx-border-color: white gray gray white;
+}
+
+.button:pressed {
+	-fx-border-color: gray white white gray;
+	-fx-border-insets: 0;
+}
+
+.static-button {
+	-fx-background-color: silver;
+	-fx-border-width: 250%; 
+	-fx-border-radius: 0.1;
+	-fx-border-insets: 1;
+	-fx-border-color: white gray gray white;
+}
+
+.static-button:flagged {
+	-fx-background-image: url("images/flagDisplay.png");
+}
+
+StackPane {
+	-fx-border-width: 100%;
+	-fx-border-color: gray;
+}
+
+.bomb {
+	-fx-background-image: url("images/bombDisplay.png");
+}
+
+.bomb:translucent {
+	-fx-opacity: 0.25;
+}
+
+.bomb:chosen {
+	-fx-background-color: red;
+}

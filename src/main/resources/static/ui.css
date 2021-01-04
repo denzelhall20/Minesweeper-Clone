@@ -1,0 +1,12 @@
+.root {
+	-fx-background-color: silver;
+}
+.children {
+	-fx-border-width: 500%;
+	-fx-border-radius: 0.1;
+	-fx-border-color: gray white white gray;
+}
+
+.menu {
+	-fx-background-color: gainsboro;
+}
